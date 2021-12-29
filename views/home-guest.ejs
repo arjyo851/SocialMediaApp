@@ -37,7 +37,7 @@
         <p>Are you sick of short tweets and impersonal "shared" posts that are reminiscent of the late 90's email forwards? We believe getting back to actually writing is the key to enjoy the internet again.</p>  
       </div>
     </div>
-    <form class="col-lg-6 main-form" action="/register" method="post">
+    <form class="col-lg-6 main-form" action="/register" method="post" id="register-form">
       <div class="form-group">
         <div class="alert alert-danger invisible" id="firstwarn" role="alert">
           Username can only contain letters and numbers
@@ -114,22 +114,47 @@ $('#exampleInputPassword1').on('input',function(event){
 
 //second input
 
+// $('#exampleInputEmail1').on('blur',(event)=>{
+//   console.log(document.getElementById('exampleInputEmail1').value)
+//   var checkemail = document.getElementById('exampleInputEmail1').value
+//   fetch("/register",{
+//     method:'POST',
+//     headers:{
+//       'Content-Type':'application/json'
+//     },
+//     body:JSON.stringify({
+//         email:checkemail
+//     })
+//   })
+//   .then(res=>{
+//     return res.json()})
+//   .then(data=>console.log(data))
+//   .catch(error=>console.log(error));
+// })
 $('#exampleInputEmail1').on('blur',(event)=>{
-  console.log(document.getElementById('exampleInputEmail1').value)
-  var checkemail = document.getElementById('exampleInputEmail1').value
-  fetch("/register",{
-    method:'POST',
-    headers:{
-      'Content-Type':'application/json'
-    },
-    body:JSON.stringify({
-        email:checkemail
-    })
+var $registerForm = $('#register-form');
+if( $registerForm.length ) {
+        $registerForm.on( "submit", function( e ) {
+            e.preventDefault();
+            $registerForm.find( ".is-invalid" ).removeClass( "is-invalid" );
+            $registerForm.find( ".invalid-feedback" ).remove();
+
+            $.post( $registerForm.attr( "action" ), $registerForm.serialize(), function( res ) {
+                if( res.errors ) {
+                    res.errors.forEach(function( err ) {
+                        $registerForm.find( "[name=" + err.param + "]" ).addClass( "is-invalid" ).after( '<span class="invalid-feedback" role="alert"><strong>' + err. msg + '</strong></span>' );
+                    });
+                } else if( res.success ) {
+                    window.location = "/login/";
+                } else {
+                    console.log( res );
+                }
+            });
+        });
+    }
   })
-  .then(res=>{
-    return res.json()})
-  .then(data=>console.log(data))
-  .catch(error=>console.log(error));
-})
+
+
+
 </script>
   <%- include('partials/footer'); -%>

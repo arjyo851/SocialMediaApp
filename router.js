@@ -47,35 +47,8 @@ router.get("/",function(req,res){
   
   })
   
-  router.post("/register",
-  // [
+  router.post("/register",async(req,res,next)=>{
  
-  // body('email')
-  // .custom((value, {req}) => {
-  // return new Promise((resolve, reject) => {
-  //   console.log(value+" Hi there")
-  //   User.findOne({email:value}, function(err, user){
-  //     if(err) {
-  //       console.log("server error")
-  //       reject(new Error('Server Error'))
-  //     }
-  //     if(Boolean(user)) {
-  //       console.log("email already in use")
-  //       reject(new Error('E-mail already in use'))
-  //     }
-  //     resolve(true)
-  //   });
-  // });
-  // }),],
-  async(req,res,next)=>{
-  // res.json(req.body)
-  // const errors = validationResult(req);
-  // if(!errors.isEmpty()){
-  // const alert = errors.array();
-  // res.render('home-guest',{
-  // alert
-  // })
-  // }
   const { username, email, password } = req.body;
 
 
@@ -103,49 +76,59 @@ if(validator.isEmpty(password)) {
         msg: 'Password is a required field.'
     });
 
-    try {
-      const usernameExists = await users.countDocuments({ username: username });
-      const emailExists = await users.countDocuments({ email: email });
-
-      if(usernameExists === 1) {
-          errors.push({
-              param: 'username',
-              msg: 'Invalid username.'
-          });
-      }
-
-      if(emailExists === 1) {
-          errors.push({
-              param: 'email',
-              msg: 'Invalid e-mail address.'
-          }); 
-      }
-
-  } catch(err) {
-      res.json({ error: err });
-  }
 }
+
+try {
+  const usernameExists = await users.countDocuments({ username: username });
+  const emailExists = await users.countDocuments({ email: email });
+
+  if(usernameExists === 1) {
+      errors.push({
+          param: 'username',
+          msg: 'Invalid username.'
+      });
+  }
+
+  if(emailExists === 1) {
+      errors.push({
+          param: 'email',
+          msg: 'Invalid e-mail address.'
+      }); 
+  }
+
+} catch(err) {
+  res.json({ error: err });
+}
+
   //   Register
-  bcrypt.hash(password, saltrounds, function(err, hash) {
-    const newUser =  new User({
-        username: username,
-        email:email,
-        password:hash
-      });
-  
+
+  if(errors.length>0){
+    res.json({error});
+  }
+  else{
+    bcrypt.hash(password, saltrounds, function(err, hash) {
+      const newUser =  new User({
+          username: username,
+          email:email,
+          password:hash
+        });
     
-      newUser.save(function(err){
-        if (err) {
-          console.log(err);
-        } else {
-          usern = username;
-          res.render("home-dashboard",{title:usern});
-          console.log("Succesfully registered")
-        }
-      });
-  });
+      
+        newUser.save(function(err){
+          if (err) {
+            console.log(err);
+          } else {
+            usern = username;
+            res.render("home-dashboard",{title:usern});
+            console.log("Succesfully registered")
+          }
+        });
+      })
+  }
   
-  })
+  
+  
+  });
   
   // dashboard
   
