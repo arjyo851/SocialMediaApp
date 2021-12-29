@@ -1,0 +1,14 @@
+<%- include('partials/header'); -%>
+<div class="container py-md-5 container--narrow">
+    <div id="profile">
+        <button class="font-awes-profile"><i class="fas fa-user-circle fa-2x"></i></button>
+        <p id="pro-name"><%=(typeof title != "undefined" ? title : "")%></p>
+    </div>
+    <div class="d-flex profile-but">
+        <button class="prof-but-elem" style="color: #0060b6;"><a href="/profile" style="color: #0060b6;">Posts: 0</a>  </button>
+        <button class="prof-but-elem" style="color: #0060b6;"><a href="/followers" style="color: #0060b6;">Followers: 0</a></button>
+        <button class="prof-but-elem" id="following"><a href="/following">Following: 0</a></button>
+    </div>
+</div>
+
+<%- include('partials/footer'); -%>

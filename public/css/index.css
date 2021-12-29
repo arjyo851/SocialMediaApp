@@ -1,0 +1,198 @@
+.invisible{
+    visibility: none;
+    display: none;
+}
+
+.btn{
+    width: 150px;
+}
+
+#navbarSupportedContent{
+    margin-right: 80px;
+}
+
+.navbar-brand{
+    margin-left: 130px;
+    font-size: 30px;
+}
+
+.navbar{
+    height: 56px;
+}
+
+.grey{
+    color: grey;
+}
+
+
+
+  .main-form{
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      margin-top: 100px;
+  }
+
+  .main-page-content{
+    margin-top: 150px;
+    margin-left: 120px;
+  }
+
+  h1{
+      font-size: 3.5rem;
+  }
+
+  .form-group input{
+      width: 400px;
+      margin-bottom: 15px;
+  }
+
+  .main-form button{
+      width: 400px;
+      background-color: rgb(145, 216, 38);
+      padding: 15px 0;
+  }
+
+  .text-footer{
+      text-align: center;
+      color: grey;
+  }
+
+  footer{
+      height: 100px;
+  }
+
+  .main-content{
+      height: 460px;
+  }
+
+  #firstwarn{
+    position: relative;
+    top: 40px;
+    width: 380px;
+height: 50px;
+  }
+
+  #thirdwarn{
+    position: relative;
+    top: 40px;
+    width: 380px;
+    height: 50px;
+  }
+
+  /* dashboard */
+
+ 
+  .icons{
+      margin: 0 5px;
+  }
+
+  .icons a{
+      text-decoration: none;
+      text-decoration-color: white;
+  }
+
+
+  .font-awes{
+      background-color: #212529;
+      border: none;
+color: white;
+/* background-color: white; */
+  }
+
+  .font-awes-profile{
+      background-color: white;
+      border: none;
+  }
+
+  #submitbut{
+      background-color: gray;
+  }
+
+  #dashboard{
+    width: 50%;
+  }
+
+  /* profile */
+  #profile{
+    margin-top: 50px;
+      text-align: left;
+      position: relative;
+    left: 320px;
+    display: flex;
+    justify-content: center;
+    width: 200px;
+    padding: 5px 5px;
+  }
+
+  #pro-name{
+    position: relative;
+    top: 6px;
+    left: 20px;
+    width: 75%;
+    font-size: 22px;
+  }
+  
+
+  #profile button{
+      width: 25%;
+  }
+
+  .profile-but{
+      position: relative;
+      left: 320px;
+  }
+
+  .prof-but-elem{
+background-color: white;
+border-top: 0px;
+border-left: 0px;
+border-right: 0px;
+border-bottom:1px solid grey;
+padding: 5px 15px;
+  }
+
+  .create{    
+    width: 50%;
+  }
+
+  
+
+  /* profile */
+
+  a {
+    /* color: #0060b6; */
+    color: black;
+    text-decoration: none;
+  }
+
+  a:hover{
+    color: black;
+    text-decoration: none;
+  }
+
+  #Posts{
+    color: black ;
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-bottom: 0px;
+  }
+
+  #follower{
+    color: black ;
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-bottom: 0px;
+  }
+
+  #following{
+    color: black ;
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-bottom: 0px;
+  }
+
+  

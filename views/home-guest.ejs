@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OurApp</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+
+<!-- navbar -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark back">
+    <div class="container-fluid">
+      <a class="navbar-brand " href="#">OurApp</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        
+        <form class="d-flex ms-auto" action="/login" method="post">
+            <input type="text" class="form-control me-2 grey" placeholder="Username" name="username_login">
+          <input class="form-control me-2 grey" type="password" placeholder="Password" aria-label="Search" name="password_login">
+          <button class="btn btn-primary btn-sm" type="submit">Sign In</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <div class="d-flex main-content ">
+    <div class="col-lg-6 ">
+      <div class="main-page-content">
+        <h1 >Remember Writing?</h1>
+        <p>Are you sick of short tweets and impersonal "shared" posts that are reminiscent of the late 90's email forwards? We believe getting back to actually writing is the key to enjoy the internet again.</p>  
+      </div>
+    </div>
+    <form class="col-lg-6 main-form" action="/register" method="post">
+      <div class="form-group">
+        <div class="alert alert-danger invisible" id="firstwarn" role="alert">
+          Username can only contain letters and numbers
+        </div>
+        <label for="exampleInputUser1">Username</label>
+        <input type="text" class="form-control" id="exampleInputUser1" aria-describedby="UserHelp" placeholder="Pick a Username" name="username">
+      </div>
+      <div class="form-group">
+        <%if(typeof alert != 'undefined') {%>
+          <%alert.forEach(function(error){%>
+            <div class="alert alert-danger" role="alert">
+            <%=error.msg%>
+          </div>
+        <%})%>
+        <%}%>
+        
+        <label for="exampleInputEmail1">Emails</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="you@example.com" name="email">
+      </div>
+      <div class="form-group">
+        <div class="alert alert-danger invisible" id="thirdwarn" role="alert">
+          Password must be atleast 8 characters
+        </div>
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Create a password" name="password">
+      </div>
+      
+      <button type="submit" class="btn ">Sign up for OurApp</button>
+    </form>
+  </div>
+
+  <script>
+    
+    // First input
+    var valueInput = "";
+   
+
+    $('#exampleInputUser1').on('input', function (event) {
+      
+    var regex = new RegExp("^[a-zA-Z0-9]+$");
+      
+
+  var value = document.getElementById('exampleInputUser1').value;
+
+    console.log(value)
+
+  console.log(regex.test(value));
+ 
+    if (value === null || value === "") {
+      
+      $("#firstwarn").addClass('invisible');
+    
+    }
+    else if(!regex.test(value)){
+      $("#firstwarn").removeClass('invisible');
+    }
+    else {
+      $("#firstwarn").addClass('invisible');
+    }
+
+});
+
+// Third input
+
+$('#exampleInputPassword1').on('input',function(event){
+  console.log(document.getElementById('exampleInputPassword1').value)
+  if(document.getElementById('exampleInputPassword1').value.length < 8 && document.getElementById('exampleInputPassword1').value.length >0){
+    $("#thirdwarn").removeClass('invisible');
+  }
+  else{
+    $("#thirdwarn").addClass('invisible');
+  }
+})
+
+//second input
+
+$('#exampleInputEmail1').on('blur',(event)=>{
+  console.log(document.getElementById('exampleInputEmail1').value)
+  var checkemail = document.getElementById('exampleInputEmail1').value
+  fetch("/register",{
+    method:'POST',
+    headers:{
+      'Content-Type':'application/json'
+    },
+    body:JSON.stringify({
+        email:checkemail
+    })
+  })
+  .then(res=>{
+    return res.json()})
+  .then(data=>console.log(data))
+  .catch(error=>console.log(error));
+})
+</script>
+  <%- include('partials/footer'); -%>

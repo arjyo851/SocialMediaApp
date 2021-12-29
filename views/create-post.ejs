@@ -1,0 +1,16 @@
+<%- include('partials/header'); -%>
+    
+<div class="create container py-md-5 container--narrow">
+    <form action="/compose" method="post">
+        <div class="mb-3">
+            <label for="titl" class="form-label">Title</label>
+        <input type="text" class="form-control" name="postTitle" id="titl" autocomplete="off">
+        <label for="tarea" class="form-label">Para</label>
+        <textarea name="postBody" id="tarea" cols="30" rows="10" class="form-control"></textarea>
+    </div>
+    <button type="submit" name="button" class="btn mt-2 btn-primary">Save new post</button>
+    </form>
+</div>
+    
+    
+<%- include('partials/footer'); -%>
