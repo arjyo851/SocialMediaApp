@@ -71,7 +71,8 @@
 
   <script>
     
-    // First input
+    // First input -- when the username contains a special character it will show a error
+    //later i plan to remove this in order to do it with direct communication with the server i.e router.js file
     var valueInput = "";
    
 
@@ -100,7 +101,8 @@
 
 });
 
-// Third input
+// Third input - If the password is less than 8 characters this will show a warning
+    //later i plan to remove this in order to do it with direct communication with the server i.e router.js file
 
 $('#exampleInputPassword1').on('input',function(event){
   console.log(document.getElementById('exampleInputPassword1').value)
@@ -131,28 +133,30 @@ $('#exampleInputPassword1').on('input',function(event){
 //   .then(data=>console.log(data))
 //   .catch(error=>console.log(error));
 // })
-$('#exampleInputEmail1').on('blur',(event)=>{
-var $registerForm = $('#register-form');
-if( $registerForm.length ) {
-        $registerForm.on( "submit", function( e ) {
-            e.preventDefault();
-            $registerForm.find( ".is-invalid" ).removeClass( "is-invalid" );
-            $registerForm.find( ".invalid-feedback" ).remove();
 
-            $.post( $registerForm.attr( "action" ), $registerForm.serialize(), function( res ) {
-                if( res.errors ) {
-                    res.errors.forEach(function( err ) {
-                        $registerForm.find( "[name=" + err.param + "]" ).addClass( "is-invalid" ).after( '<span class="invalid-feedback" role="alert"><strong>' + err. msg + '</strong></span>' );
-                    });
-                } else if( res.success ) {
-                    window.location = "/login/";
-                } else {
-                    console.log( res );
-                }
-            });
-        });
-    }
-  })
+
+// $('#exampleInputEmail1').on('blur',(event)=>{
+// var $registerForm = $('#register-form');
+// if( $registerForm.length ) {
+//         $registerForm.on( "submit", function( e ) {
+//             e.preventDefault();
+//             $registerForm.find( ".is-invalid" ).removeClass( "is-invalid" );
+//             $registerForm.find( ".invalid-feedback" ).remove();
+
+//             $.post( $registerForm.attr( "action" ), $registerForm.serialize(), function( res ) {
+//                 if( res.errors ) {
+//                     res.errors.forEach(function( err ) {
+//                         $registerForm.find( "[name=" + err.param + "]" ).addClass( "is-invalid" ).after( '<span class="invalid-feedback" role="alert"><strong>' + err. msg + '</strong></span>' );
+//                     });
+//                 } else if( res.success ) {
+//                     window.location = "/login/";
+//                 } else {
+//                     console.log( res );
+//                 }
+//             });
+//         });
+//     }
+//   })
 
 
 

@@ -7,6 +7,8 @@ const User = mongoose.model("User");
 const bcrypt = require('bcrypt')
 const saltrounds = 10;
 const validator = require('validator');
+const jwt = require('jsonwebtoken');
+JWT_SECRET=process.env.JWT_SECRET.toString()
 
 
 var usern;
@@ -27,41 +29,44 @@ router.get("/",function(req,res){
   usern = req.body.username_login
   User.findOne({username: username_login}, function(err, foundUser){
     if (err) {
-      console.log(err);
+      console.log(err); //will later create a div showing user not found ------
     } else {
       if (foundUser) {
         bcrypt.compare(password_login, foundUser.password, function(err, result) {
             if(result === true){
+              const token = jwt.sign({_id:foundUser._id},JWT_SECRET);
+              console.log({token});
+              res.json({token})
                 res.render("home-dashboard",{title:foundUser.username});
             }
             else{
-                console.log("password is wrong");
+                console.log("password is wrong"); //Later show a div telling password is wrong
             }  
         });
     } 
       else{
-          console.log("username not found")
+          console.log("username not found") // Later show a div telling that username is wrong
       }
     }
   });
   
   })
   
-  router.post("/register",async(req,res,next)=>{
+  router.post("/register",(req,res)=>{
  
   const { username, email, password } = req.body;
 
 
   const errors = [];
 
-  if(validator.isEmpty(username)) {
+  if(validator.isEmpty(username)) {   // I want to push this to client side such that this should show up as a div as the client starts typing
     errors.push({
         param: 'username',
         msg: 'UserName is a required field.'
     });
 }
 
-if(!validator.isEmail(email)) {
+if(!validator.isEmail(email)) {  // I want to push this to client side such that this should show up as a div as the client starts typing
     errors.push({
         param: 'email',
         msg: 'Invalid e-mail address.'
@@ -70,7 +75,7 @@ if(!validator.isEmail(email)) {
 
 
 
-if(validator.isEmpty(password)) {
+if(validator.isEmpty(password)) {  // I want to push this to client side such that this should show up as a div as the client starts typing
     errors.push({
         param: 'password',
         msg: 'Password is a required field.'
@@ -79,17 +84,17 @@ if(validator.isEmpty(password)) {
 }
 
 try {
-  const usernameExists = await users.countDocuments({ username: username });
-  const emailExists = await users.countDocuments({ email: email });
+  const usernameExists =  User.countDocuments({ username: username });
+  const emailExists =  User.countDocuments({ email: email });
 
-  if(usernameExists === 1) {
+  if(usernameExists === 1) {  // I want to push this to client side such that this should show up as a div as the client starts typing
       errors.push({
           param: 'username',
           msg: 'Invalid username.'
       });
   }
 
-  if(emailExists === 1) {
+  if(emailExists === 1) {  // I want to push this to client side such that this should show up as a div as the client starts typing
       errors.push({
           param: 'email',
           msg: 'Invalid e-mail address.'
@@ -123,10 +128,13 @@ try {
             console.log("Succesfully registered")
           }
         });
+      
+      
+        
       })
   }
   
-  
+  // res.json({ success: true });
   
   });
   
