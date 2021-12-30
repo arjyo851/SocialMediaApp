@@ -11,6 +11,7 @@ const validator = require('validator');
 
 const app = express();
 
+const PASSWORD = process.env.PASSWORD.toString();
 // mongoose.connect("mongodb+srv://admin-arjyo:"+PASSWORD+"@cluster0.qwodm.mongodb.net/userdb?retryWrites=true&w=majority")
 mongoose.connect("mongodb://localhost:27017/userDB")
 
@@ -26,7 +27,6 @@ app.use(require('./router'))
 
 
 
-const PASSWORD = process.env.PASSWORD.toString();
 
 
 

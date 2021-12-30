@@ -8,6 +8,7 @@ const bcrypt = require('bcrypt')
 const saltrounds = 10;
 const validator = require('validator');
 const jwt = require('jsonwebtoken');
+const requiredLogin = require('./middleware/requiredLogin')
 JWT_SECRET=process.env.JWT_SECRET.toString()
 
 
@@ -36,7 +37,7 @@ router.get("/",function(req,res){
             if(result === true){
               const token = jwt.sign({_id:foundUser._id},JWT_SECRET);
               console.log({token});
-              res.json({token})
+              // res.json({token})
                 res.render("home-dashboard",{title:foundUser.username});
             }
             else{
@@ -140,15 +141,15 @@ try {
   
   // dashboard
   
-  router.get("/dashboard",function(req,res){
+  router.get("/dashboard",requiredLogin,function(req,res){
     res.render("home-dashboard")
   })
   
-  router.get("/profile",function(req,res){
+  router.get("/profile",requiredLogin,function(req,res){
     res.render("profile",{title:usern});
   })
   
-  router.get("/compose",function(req,res){
+  router.get("/compose",requiredLogin,function(req,res){
     res.render("create-post");
   })
   
@@ -157,11 +158,11 @@ try {
   });
   
   
-  router.get("/followers",function(req,res){
+  router.get("/followers",requiredLogin,function(req,res){
   res.render("profile-followers",{title:usern});
   })
   
-  router.get("/following",function(req,res){
+  router.get("/following",requiredLogin,function(req,res){
   res.render("profile-following",{title:usern})
   })
 
