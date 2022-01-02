@@ -21,7 +21,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         
-        <form class="d-flex ms-auto" action="/login" method="post">
+        <form class="d-flex ms-auto" action="/login" method="post" id="firstform" >
             <input type="text" class="form-control me-2 grey" placeholder="Username" name="username_login">
           <input class="form-control me-2 grey" type="password" placeholder="Password" aria-label="Search" name="password_login">
           <button class="btn btn-primary btn-sm" type="submit">Sign In</button>
@@ -114,7 +114,8 @@ $('#exampleInputPassword1').on('input',function(event){
   }
 })
 
-//second input
+//second input - Trying to bring jwt to client side
+
 
 // $('#exampleInputEmail1').on('blur',(event)=>{
 //   console.log(document.getElementById('exampleInputEmail1').value)
@@ -158,6 +159,30 @@ $('#exampleInputPassword1').on('input',function(event){
 //     }
 //   })
 
+
+var $LoginForm = $( "#firstform" );
+
+if( $LoginForm.length ) {
+  $LoginForm.on( "submit", function( e ) {
+e.preventDefault();
+$.post( $LoginForm.attr( "action" ), $LoginForm.serialize(), function( res ) {
+                // console.log($LoginForm.serialize().username_login)
+                console.log(res.token);
+                document.cookie = res.token
+
+                // localStorage.setItem("userInfo",res.token)
+                window.location.href = 'http://localhost:3000/dashboard';
+            });
+
+
+
+  
+})
+}
+
+// const token = await res.json();
+
+// set token in cookie
 
 
 </script>

@@ -1,18 +1,39 @@
 const express = require("express")
 const ejs = require('ejs');
+const mongoose = require('mongoose')
 const router = express.Router();
 const { body, validationResult } = require('express-validator');
-const mongoose = require('mongoose')
 const User = mongoose.model("User");
 const bcrypt = require('bcrypt')
 const saltrounds = 10;
 const validator = require('validator');
 const jwt = require('jsonwebtoken');
-const requiredLogin = require('./middleware/requiredLogin')
+const requiredLogin = require("./middleware/requiredLogin");
+const req = require("express/lib/request");
+// const requiredLogin = require('./middleware/requiredLogin')
 JWT_SECRET=process.env.JWT_SECRET.toString()
 
 
 var usern;
+//will use later
+// const requiredLogin = (req,res,next)=>{
+//   const beraerHeader = req.headers['authorization'] 
+
+//   console.log(beraerHeader)
+//   //authorization === Bearer ewefwegwrherhe
+
+//   if(typeof beraerHeader !== 'undefined'){
+//     const bearer = beraerHeader.split(' ')
+//   const bearerToken = bearer[1]
+//   req.token = bearerToken
+// next()
+//   }
+//   else{
+//     console.log("Ends in first check")
+//     return res.status(401).json({error:"you must be logged in"})
+//   } 
+  
+// }
 
 router.get("/",function(req,res){
     res.render("home-guest")
@@ -36,9 +57,10 @@ router.get("/",function(req,res){
         bcrypt.compare(password_login, foundUser.password, function(err, result) {
             if(result === true){
               const token = jwt.sign({_id:foundUser._id},JWT_SECRET);
-              console.log({token});
-              // res.json({token})
-                res.render("home-dashboard",{title:foundUser.username});
+              
+              res.json({token})
+              
+                // res.render("home-dashboard",{title:foundUser.username});
             }
             else{
                 console.log("password is wrong"); //Later show a div telling password is wrong
@@ -109,7 +131,7 @@ try {
   //   Register
 
   if(errors.length>0){
-    res.json({error});
+    res.json({errors});
   }
   else{
     bcrypt.hash(password, saltrounds, function(err, hash) {
@@ -124,8 +146,8 @@ try {
           if (err) {
             console.log(err);
           } else {
-            usern = username;
-            res.render("home-dashboard",{title:usern});
+            // usern = username;
+            res.render("home-dashboard",{title:req.user.username});
             console.log("Succesfully registered")
           }
         });
@@ -141,16 +163,23 @@ try {
   
   // dashboard
   
-  router.get("/dashboard",requiredLogin,function(req,res){
-    res.render("home-dashboard")
+  router.get("/dashboard",function(req,res){
+    res.render("home-dashboard",{title:usern})
   })
   
-  router.get("/profile",requiredLogin,function(req,res){
-    res.render("profile",{title:usern});
+  router.get("/profile/:username",requiredLogin,function(req,res){
+    console.log(req.user.username)
+    if(req.params.username === req.user.username){  //check this line
+      res.render("profile",{title:req.user.username});
+    }
+    else{
+      res.redirect("/404")
+    }
+    
   })
   
-  router.get("/compose",requiredLogin,function(req,res){
-    res.render("create-post");
+  router.get("/createPost",requiredLogin,function(req,res){
+    res.render("create-post",{title:req.user.username});
   })
   
   router.get("/404",function(req,res){
@@ -158,12 +187,19 @@ try {
   });
   
   
-  router.get("/followers",requiredLogin,function(req,res){
-  res.render("profile-followers",{title:usern});
+  router.get("/profile/:username/followers",requiredLogin,function(req,res){
+    
+    usern = req.params.username;
+      res.render("profile-followers",{title:req.user.username});
+    
+    console.log(usern)
+ 
   })
   
-  router.get("/following",requiredLogin,function(req,res){
-  res.render("profile-following",{title:usern})
+  router.get("/profile/:username/following",requiredLogin,function(req,res){
+    usern = req.params.username;
+      res.render("profile-following",{title:req.user.username})
+    
   })
 
 
