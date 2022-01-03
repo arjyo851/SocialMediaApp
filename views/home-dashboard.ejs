@@ -9,8 +9,9 @@
   </div>
 </section>
 <script>
-  // var token = localStorage.getItem('userInfo');
-  // document.cookie = token
+  var token = localStorage.getItem(title);
+  console.log(title)
+  document.cookie = token
   console.log(`Authorization=Bearer ${token}`)
 //   fetch('/profile/<%=title%>', {
 //          method: 'GET',

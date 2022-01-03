@@ -169,8 +169,11 @@ $.post( $LoginForm.attr( "action" ), $LoginForm.serialize(), function( res ) {
                 // console.log($LoginForm.serialize().username_login)
                 console.log(res.token);
                 document.cookie = res.token
-
-                // localStorage.setItem("userInfo",res.token)
+                console.log($LoginForm.serialize());
+                var user = jQuery('input[name="username_login"]').val();
+                // console.log(jQuery('input[name="username_login"]').val());  
+           console.log(typeof $LoginForm.serialize())
+                localStorage.setItem(user,res.token)
                 window.location.href = 'http://localhost:3000/dashboard';
             });
 

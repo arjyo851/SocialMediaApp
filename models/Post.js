@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { post } = require('../router');
+// const { post } = require('../router');
 const {ObjectId} = mongoose.Schema.Types
 
 const postSchema = new mongoose.Schema({

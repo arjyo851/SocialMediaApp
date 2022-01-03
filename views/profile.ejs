@@ -10,6 +10,13 @@
         <button class="prof-but-elem" style="color: #0060b6;"><a href="/profile/<%=title%>/following"  style="color: #0060b6;">Following: 0</a></button>
     </div>
 </div>
+<%    posts.forEach(function(post){ %>
+    <h1><%= post.title %></h1>
+    <p><%= post.content.substring(0,100) + " ..."  %>
+     <a href="/posts/<%= post._id%>"">Read More</a>
+    </p>
+ <%    }) %>
+</div>
 <script>
     var token = document.cookie;
     console.log(token)
