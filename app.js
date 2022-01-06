@@ -6,8 +6,8 @@ const bcrypt = require('bcrypt')
 const saltrounds = 10;
 const { body, validationResult } = require('express-validator');
 const validator = require('validator');
-
-
+const cookie_parser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 
@@ -20,12 +20,12 @@ require('./models/User')
 require('./models/Post')
 
 app.set('view engine','ejs');
+app.use(cookieParser())
 app.use(express.urlencoded({extended:true}));
 app.use(express.static("public"));
 app.use(express.json());
 app.use(require('./router'))
 app.use(require('./controllers/postControllers'))
-
 
 
 

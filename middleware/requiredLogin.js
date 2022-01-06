@@ -7,12 +7,14 @@ module.exports = (req,res,next)=>{
     req.is('application/json')
     
     const {cookie} = req.headers;
-    console.log(req.user)
+    console.log(req.cookies)
+    console.log(req.cookies.dentalmaniac)
+    console.log(req.params.username)
+    // console.log()
     
-    console.log(cookie)
     var cookieValue = cookie.split('=')[1]
     const authorization = "Bearer " + cookieValue
-    req.headers.authorization = authorization
+    req.headers.auth = authorization
     // console.log(req.headers)
     //authorization === Bearer ewefwegwrherhe
     if(!authorization){

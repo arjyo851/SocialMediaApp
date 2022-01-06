@@ -160,28 +160,28 @@ $('#exampleInputPassword1').on('input',function(event){
 //   })
 
 
-var $LoginForm = $( "#firstform" );
+// var $LoginForm = $( "#firstform" );
 
-if( $LoginForm.length ) {
-  $LoginForm.on( "submit", function( e ) {
-e.preventDefault();
-$.post( $LoginForm.attr( "action" ), $LoginForm.serialize(), function( res ) {
-                // console.log($LoginForm.serialize().username_login)
-                console.log(res.token);
-                var user = jQuery('input[name="username_login"]').val();
-                document.cookie = `${user}=${res.token}`
-                console.log($LoginForm.serialize());
-                // console.log(jQuery('input[name="username_login"]').val());  
-           console.log(typeof $LoginForm.serialize())
+// if( $LoginForm.length ) {
+//   $LoginForm.on( "submit", function( e ) {
+// e.preventDefault();
+// $.post( $LoginForm.attr( "action" ), $LoginForm.serialize(), function( res ) {
+//                 // console.log($LoginForm.serialize().username_login)
+//                 console.log(res.token);
+//                 var user = jQuery('input[name="username_login"]').val();
+//                 document.cookie = `${user}=${res.token}`
+//                 console.log($LoginForm.serialize());
+//                 // console.log(jQuery('input[name="username_login"]').val());  
+//            console.log(typeof $LoginForm.serialize())
                 
-                window.location.href = 'http://localhost:3000/dashboard';
-            });
+//                 window.location.href = 'http://localhost:3000/dashboard';
+//             });
 
 
 
   
-})
-}
+//})
+//}
 
 // const token = await res.json();
 

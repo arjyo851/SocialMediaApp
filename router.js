@@ -60,9 +60,15 @@ router.get("/",function(req,res){
               // console.log(foundUser)
               req.user = foundUser
               
-              res.json({token})
-              
-                // res.render("home-dashboard",{title:foundUser.username});
+              // res.json({token})
+              const cookieOptions = {
+                expires:new Date(
+                  Date.now() + 90*24*60*60*1000
+                ),
+                httpOnly:true
+              }
+              res.cookie(username_login,token,cookieOptions)
+                res.render("home-dashboard",{title:usern});
             }
             else{
                 console.log("password is wrong"); //Later show a div telling password is wrong
