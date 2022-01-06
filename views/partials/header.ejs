@@ -24,12 +24,12 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         
         <ul class="d-flex ms-auto  navbar-nav">
-          <li class="nav-item icons"><button class="font-awes"><i class="fas fa-search "></i></button></li>
-           <li class="nav-item icons"><button class="font-awes"><i class="fas fa-comment "></i> </button></li>
-          <li class="nav-item icons" ><button class="font-awes" "><a href="/profile/<%=(typeof title != 'undefined' ? title : '')%>"><i class="fas fa-user-circle "></i></a></button></li>
+          <li class="nav-item icons"><button class="font-awes"><a style="color: white;margin-top: 8px;" href="#"><i class="fas fa-search fa-2x"></i></a></button></li>
+           <li class="nav-item icons"><button class="font-awes"><a style="color: white;margin-top: 8px;margin:auto 10px;" href="#"><i  class="fas fa-comment fa-2x"></i></a> </button></li>
+          <li class="nav-item icons" ><button class="font-awes" ><a style="color: white;" href="/profile/<%=(typeof title != 'undefined' ? title : '')%>"  ><i class="fas fa-user-circle fa-2x" ></i></a></button></li>
           
-          <li class="nav-item icons"><a href="/createPost"><button class="btn btn-success btn-sm" type="submit" >Create Post</button></a></li>
-          <li class="nav-item icons"><a href="/"><button class="btn  btn-sm" id="submitbut" type="submit">Sign Out</button></a></li>
+          <li class="nav-item icons header-buttons"><a href="/createPost"><button class="btn btn-success btn-sm" type="submit" >Create Post</button></a></li>
+          <li class="nav-item icons header-buttons"><a href="/"><button class="btn  btn-sm" id="submitbut" type="submit">Sign Out</button></a></li>
         </ul>
       </div>
     </div>

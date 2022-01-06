@@ -7,9 +7,11 @@ module.exports = (req,res,next)=>{
     req.is('application/json')
     
     const {cookie} = req.headers;
+    console.log(req.user)
     
-    
-    const authorization = "Bearer " + cookie
+    console.log(cookie)
+    var cookieValue = cookie.split('=')[1]
+    const authorization = "Bearer " + cookieValue
     req.headers.authorization = authorization
     // console.log(req.headers)
     //authorization === Bearer ewefwegwrherhe
@@ -18,7 +20,7 @@ module.exports = (req,res,next)=>{
        return res.status(401).json({error:"you must be logged in"})
     }
     const token = authorization.replace("Bearer ","")
-    console.log(token+"     sudden token");
+    
     jwt.verify(token,JWT_SECRET,(err,payload)=>{
         
         if(err){

@@ -11,15 +11,17 @@
     </div>
 </div>
 <%    posts.forEach(function(post){ %>
+    <div>
     <h1><%= post.title %></h1>
     <p><%= post.content.substring(0,100) + " ..."  %>
      <a href="/posts/<%= post._id%>"">Read More</a>
     </p>
+    </div>
  <%    }) %>
 </div>
 <script>
-    var token = document.cookie;
-    console.log(token)
+    
+    // console.log(cookie.value)
 </script>
 
 <%- include('partials/footer'); -%>

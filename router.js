@@ -57,6 +57,8 @@ router.get("/",function(req,res){
         bcrypt.compare(password_login, foundUser.password, function(err, result) {
             if(result === true){
               const token = jwt.sign({_id:foundUser._id},JWT_SECRET);
+              // console.log(foundUser)
+              req.user = foundUser
               
               res.json({token})
               
@@ -163,20 +165,25 @@ try {
   // dashboard
   
   router.get("/dashboard",function(req,res){
-    console.log(usern)
+   console.log(req.headers.cookie)
     res.render("home-dashboard",{title:usern})
   })
   
   router.get("/profile/:username",requiredLogin,function(req,res){
     console.log(req.user.username)
     if(req.params.username === req.user.username){  //check this line
-      Post.find({}, function(err, posts){
-      res.render("profile",
+      // Post.find({}, function(err, posts){
+      // res.render("profile",
+      // {title:req.user.username,
+      //   posts:posts
+      // });
+      // }
+      // )}
+      Post.find({Postedby:req.user._id}).populate("Postedby","_id username").then(posts=> res.render("profile",
       {title:req.user.username,
         posts:posts
-      });
-      }
-      )}
+      })).catch(err=>console.log(err))
+    }
     else{
       res.redirect("/404")
     }
@@ -212,12 +219,16 @@ try {
 
   router.post("/create-post",requiredLogin, function(req, res){
     console.log(req.user.username)
+    if(req.user.username === undefined){
+      res.json({error:"please forgive me i cannot do thi"})
+    }
     const post = new Post({
       title: req.body.postTitle,
-      content: req.body.postBody
+      content: req.body.postBody,
+      Postedby:req.user
     });
   
-  
+  // req.user.password = undefined
     post.save(function(err){
       if (!err){
         res.redirect("/post/"+post._id);

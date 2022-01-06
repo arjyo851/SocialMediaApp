@@ -17,7 +17,7 @@
 }
 
 .navbar{
-    height: 56px;
+    height: 68px;
 }
 
 .grey{
@@ -193,6 +193,18 @@ padding: 5px 15px;
     border-top: 1px solid black;
     border-left: 1px solid black;
     border-bottom: 0px;
+  }
+
+  /* #profile{
+    color: white;
+  } */
+
+  i{
+    margin-top: 10px;
+  }
+
+  .header-buttons{
+    margin-top: 10px;
   }
 
   
