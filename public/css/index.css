@@ -1,3 +1,12 @@
+*::before,
+*::after {
+  box-sizing: border-box; }
+
+body{
+  overflow-x: hidden;
+}
+
+
 .invisible{
     visibility: none;
     display: none;
@@ -17,7 +26,7 @@
 }
 
 .navbar{
-    height: 68px;
+    height: 55px;
 }
 
 .grey{
@@ -74,7 +83,7 @@ height: 50px;
   }
 
   #thirdwarn{
-    position: relative;
+    position: fixed;
     top: 40px;
     width: 380px;
     height: 50px;
@@ -207,4 +216,107 @@ padding: 5px 15px;
     margin-top: 10px;
   }
 
-  
+  /* card list  */
+
+  .card-list-body{
+    font-family: -apple-system, BlinkMacSystemFont, "Inter UI", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+font-size: 1rem;
+font-weight: 400;
+line-height: 1.5;
+color: #6c757d;
+text-align: left;
+  }
+
+  .card {
+    margin-bottom: 0.75rem; }
+    .card .card-title {
+      max-width: 90%; }
+
+
+
+  .card-task .card-body {
+    padding: 1.25rem;
+    justify-content: space-between;
+   }
+
+   .card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.5rem;
+   }
+   
+   /* .card-list {
+    margin-bottom: 0.75rem;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    background: #dee2e6; } */
+
+/* ---------------------------------------------------------------------------------- */
+
+    /* chat */
+  .chat-box{
+    position: fixed;
+    right: 20px;
+    bottom: 0px;
+    width: 325px;
+    height: 65vh;
+    background-color: white;
+    z-index: 1000;
+    transition: all 0.3s ease-in;
+    transform: scaleY(0);
+    transform-origin: bottom;
+    overflow-y: auto;
+  }
+
+  .chat-content{
+    position: fixed;
+    right: 20px;
+    bottom: 0px;
+    width: 325px;
+    height: 65vh;
+    background-color: white;
+    z-index: 1000;
+    transition: all 0.3s ease-in;
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+
+  .chat-box.active{
+    transform: scaleY(1);
+
+  }
+
+  .chat-header{
+    background-color: black;
+color: white;
+padding: 5px 12px;
+font-size: 20px;
+  }
+
+  #send-container{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+
+  .chat-input{
+    width: 100%;
+  }
+
+  .ms-left{
+    float: left;
+    clear: both;
+    background-color: grey;
+    padding: auto;
+    margin: 2px 0;
+    border-radius: 5px;
+  }
+
+  .ms-right{
+    float: right;
+    clear: both;
+    background-color: skyblue;
+    padding: auto;
+    margin: 2px 0;
+    border-radius: 5px;
+  }

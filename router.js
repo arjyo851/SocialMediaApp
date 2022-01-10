@@ -159,7 +159,19 @@ try {
           }
         });
       
-      
+        const token = jwt.sign({_id:foundUser._id},JWT_SECRET);
+        // console.log(foundUser)
+        req.user = foundUser
+        
+        // res.json({token})
+        const cookieOptions = {
+          expires:new Date(
+            Date.now() + 90*24*60*60*1000
+          ),
+          httpOnly:true
+        }
+        res.cookie(username_login,token,cookieOptions)
+          res.render("home-dashboard",{title:usern});
         
       })
   }

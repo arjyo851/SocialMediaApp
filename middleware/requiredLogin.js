@@ -10,9 +10,14 @@ module.exports = (req,res,next)=>{
     console.log(req.cookies)
     console.log(req.cookies.dentalmaniac)
     console.log(req.params.username)
+    // var username = req.params.username
     // console.log()
-    
+    if(!cookie){
+        console.log("ends in first request")
+       return res.status(401).json({error:"you must be logged in"})
+    }
     var cookieValue = cookie.split('=')[1]
+    // var cookieValue = 
     const authorization = "Bearer " + cookieValue
     req.headers.auth = authorization
     // console.log(req.headers)
