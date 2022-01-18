@@ -1,13 +1,13 @@
 <%- include('partials/header'); -%>
     <div class="container py-md-5 container--narrow" style="border: 1px solid black;">
         <div id="profile">
-            <button class="font-awes-profile"><i class="fas fa-user-circle fa-2x"></i></button>
+            <button class="font-awes-profile"><i class="fas fa-user-circle fa-3x"></i></button>
             <p id="pro-name">
                 <%=(typeof title !="undefined" ? title : "" )%>
             </p>
         </div>
 
-        <div class="d-flex profile-but" style="border: 1px solid black;width: 29%;">
+        <div class="d-flex profile-but" style="width: 29%;">
             <button class="prof-but-elem" id="Posts"><a href="/profile/<%=title%>">Posts: 0</a> </button>
             <button class="prof-but-elem" style="color: #0060b6;"><a href="/profile/<%=title%>/followers"
                     style="color: #0060b6;">Followers: 0</a></button>

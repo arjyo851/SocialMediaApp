@@ -127,16 +127,17 @@ color: white;
     margin-top: 50px;
       text-align: left;
       position: relative;
-    left: 320px;
+    left: 260px;
     display: flex;
     justify-content: center;
     width: 200px;
     padding: 5px 5px;
+    bottom: 22px;
   }
 
   #pro-name{
     position: relative;
-    top: 6px;
+    top: 16px;
     left: 20px;
     width: 75%;
     font-size: 22px;
@@ -149,7 +150,7 @@ color: white;
 
   .profile-but{
       position: relative;
-      left: 320px;
+      left: 260px;
   }
 
   .prof-but-elem{
@@ -345,7 +346,7 @@ z-index: 2000;
 }
 
 body {
-    background-color: #f9f9fa
+    background-color: white
 }
 
 .card-header:first-child {
