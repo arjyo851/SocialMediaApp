@@ -1,6 +1,5 @@
 require('dotenv').config();
 const express = require('express');
-const ejs = require('ejs');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt')
 const saltrounds = 10;
@@ -8,6 +7,13 @@ const { body, validationResult } = require('express-validator');
 const validator = require('validator');
 const cookie_parser = require('cookie-parser');
 const cookieParser = require('cookie-parser');
+const { Socket } = require('socket.io');
+const server = require('http').createServer();
+const io = require('socket.io')(server)
+const users = {};
+const cors = require('cors')
+const ejs = require('ejs');
+
 
 const app = express();
 
@@ -26,17 +32,31 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(require('./router'))
 app.use(require('./controllers/postControllers'))
+app.use(cors({
+  origin:false
+}))
+
+// Socket
+
+io.on('connection',socket=>{
+  socket.on('new-user-joined',name=>{
+    users[socket.id] = name;
+    socket.broadcast.emit('user-joined',name);
+  })
+
+  socket.on('send',messege=>{
+    socket.broadcast.emit('receive',{messege:messege,name:users[socket.id]})
+  })
+})
 
 
 
+ 
 
 
-
-  // const User = new mongoose.model("User", userSchema);
-  // const Post = new mongoose.model("Post",postSchema);
-
-// HOME
-
+// server.listen(process.env.PORT || 3000, function(){
+//   console.log('app running');
+// });
 
 
 

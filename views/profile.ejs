@@ -14,121 +14,40 @@
             <button class="prof-but-elem" style="color: #0060b6;"><a href="/profile/<%=title%>/following"
                     style="color: #0060b6;">Following: 0</a></button>
         </div>
-        <!-- <% posts.forEach(function(post){ %>
-            <div>
-                <h1>
-                    <%= post.title %>
-                </h1>
-                <p>
-                    <%= post.content.substring(0,100) + " ..." %>
-                        <a href="/post/<%= post._id%>"">Read More</a>
-        </p>
-        </div>
-        <%    }) %> -->
-        <% posts.forEach(function(post){ %>
-            <div class=" container content-list-body mt-4">
-                <div class=" card-list-body">
-
-                    <div class="card card-task">
-
-                        <div class="card-body">
-                            <div class="card-title">
-                                <a href="/post/<%= post._id%>">
-                                    <h6 data-filter-by="text">
-                                        <%= post.title %>
-                                    </h6>
-                                </a>
-
+        <div id="backwards">
+            <% posts.forEach(function(post){ %>
+                <div class=" container content-list-body mt-4">
+                    <div class=" card-list-body">
+    
+                        <div class="card card-task">
+    
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <a href="/post/<%= post._id%>">
+                                        <h6 data-filter-by="text">
+                                            <%= post.title %>
+                                        </h6>
+                                    </a>
+    
+                                </div>
+    
                             </div>
-
                         </div>
-                    </div>
-
-                </div>
-            </div>
-            <% }) %>
-    </div>
     
-    <div class="chat-box " style="border: 1px solid black;">
-        <div>
-            <div class="chat-header">Global Chat</div>
-            <div class="ms-right">hello I am arjyo</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
-            <div class="ms-left">hello i am dentalmaniac</div>
+                    </div>
+                </div>
+                <% }) %>
         </div>
         
-<!-- <div>
-    <form action="#"  >
-        id="send-container" class="chat-input"
-        <input type="text" class="chat-input" placeholder="Type a messege...">
-        
-        <a class="publisher-btn text-info" href="#" data-abc="true"><i class="fa fa-paper-plane"></i></a>
-    </form>
-</div>  -->
-<div class="publisher bt-1 border-light">  <input class="publisher-input" type="text" placeholder="Write something"> <span class="publisher-btn file-group"> <i class="fa fa-paperclip file-browser"></i> <input type="file"> </span> <a class="publisher-btn" href="#" data-abc="true"><i class="fa fa-smile"></i></a> <a class="publisher-btn text-info" href="#" data-abc="true"><i class="fa fa-paper-plane"></i></a> </div>
-
     </div>
 
-    <script>
-$(document).ready(function(){
-    $('.chat-icon').click(function(event){
-        $('.chat-box').toggleClass('active')
-    })
-})
+        
+    <%- include('partials/chat'); -%>
+            
+
+
     
-    </script>
+
+    <script src="/javascript/chat.js"></script>
 
     <%- include('partials/footer'); -%>
