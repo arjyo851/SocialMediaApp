@@ -8,6 +8,10 @@ const postSchema = new mongoose.Schema({
     Postedby:{
       type:ObjectId,
       ref:"User"
+    },
+    datePosted:{
+      type:Date,
+      default:new Date()
     }
   })
 

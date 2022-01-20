@@ -58,7 +58,7 @@ router.get("/",function(req,res){
             if(result === true){
               const token = jwt.sign({_id:foundUser._id},JWT_SECRET);
               // console.log(foundUser)
-              req.user = foundUser
+              req.user = foundUser            // CHECK THIS LINE
               
               // res.json({token})
               const cookieOptions = {
@@ -161,7 +161,7 @@ try {
       
         const token = jwt.sign({_id:foundUser._id},JWT_SECRET);
         // console.log(foundUser)
-        req.user = foundUser
+        req.user = foundUser                    //CHECK THIS LINE
         
         // res.json({token})
         const cookieOptions = {
@@ -179,6 +179,10 @@ try {
   // res.json({ success: true });
   
   });
+  
+
+
+
   
   // dashboard
   

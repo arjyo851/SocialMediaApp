@@ -7,17 +7,17 @@
             </p>
         </div>
 
-        <div class="d-flex profile-but" style="width: 29%;">
+        <div class="d-flex profile-but" >
             <button class="prof-but-elem" id="Posts"><a href="/profile/<%=title%>">Posts: 0</a> </button>
             <button class="prof-but-elem" style="color: #0060b6;"><a href="/profile/<%=title%>/followers"
                     style="color: #0060b6;">Followers: 0</a></button>
-            <button class="prof-but-elem" style="color: #0060b6;"><a href="/profile/<%=title%>/following"
+            <button class="prof-but-elem" style="color: #0060b6;" id="third_button"><a href="/profile/<%=title%>/following"
                     style="color: #0060b6;">Following: 0</a></button>
         </div>
-        <div id="backwards">
+        <div >
             <% posts.forEach(function(post){ %>
-                <div class=" container content-list-body mt-4">
-                    <div class=" card-list-body">
+                <!-- <div class="  content-list-body mt-4" > -->
+                    <div class=" card-list-body" id="backwards">
     
                         <div class="card card-task">
     
@@ -35,7 +35,7 @@
                         </div>
     
                     </div>
-                </div>
+                <!-- </div> -->
                 <% }) %>
         </div>
         

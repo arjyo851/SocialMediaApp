@@ -150,7 +150,8 @@ color: white;
 
   .profile-but{
       position: relative;
-      left: 260px;
+      left: 150px;
+      width: 80%;
   }
 
   .prof-but-elem{
@@ -258,7 +259,11 @@ text-align: left;
 
     #backwards{
         position: relative;
-        z-index: -999;
+        /* z-index: -999; */
+        left: 150px;
+        width: 69%;
+        border: 1px solid black;
+        margin-top: 25px;
     }
 
   .chat-box{
@@ -639,3 +644,8 @@ textarea {
 #chat-submit{
     margin-left: 74px;
 }
+
+#third_button{
+    padding-right: 460px;
+}
+
