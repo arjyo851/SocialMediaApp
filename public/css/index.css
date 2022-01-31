@@ -237,14 +237,16 @@ text-align: left;
 
 
   .card-task .card-body {
-    padding: 1.25rem;
+    padding: 0.25rem;
     justify-content: space-between;
+    border: 1px solid black;
    }
 
    .card-body {
     flex: 1 1 auto;
     min-height: 1px;
     padding: 1.5rem;
+    display: flex;
    }
    
    /* .card-list {
@@ -262,7 +264,7 @@ text-align: left;
         /* z-index: -999; */
         left: 150px;
         width: 69%;
-        border: 1px solid black;
+        /* border: 1px solid black; */
         margin-top: 25px;
     }
 

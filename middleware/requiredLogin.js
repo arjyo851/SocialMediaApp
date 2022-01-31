@@ -7,9 +7,9 @@ module.exports = (req,res,next)=>{
     req.is('application/json')
     
     const {cookie} = req.headers;
-    console.log(req.cookies)
-    console.log(req.cookies.dentalmaniac)
-    console.log(req.params.username)
+    // console.log(typeof(req.cookies) )
+    // console.log(req.cookies.dentalmaniac)
+    // console.log(req.params.username)
     // var username = req.params.username
     // console.log()
     if(!cookie){

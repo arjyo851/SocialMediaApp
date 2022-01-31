@@ -1,16 +1,53 @@
 <%- include('partials/header'); -%>
-<div>New post succsfully created</div>
+<div style="padding: 5px 5px;background-color: green;color: white;margin: 5px 5px;">New post succsfully created</div>
 <div>
 
-    <!-- <%    posts.forEach(function(post){ %> -->
+    <%    posts.forEach(function(post){ %>
+        
         <h1><%= post.title %></h1>
         <p>Posted by <%=title%> on date</p>
         <p><%= post.content%>
-         <!-- <a href="/posts/<%= post._id%>"">Read More</a> -->
         </p>
      <%    }) %>
+     <div style="padding: 20px; background-color: white;display: flex;"><button id="edit" style="background-color: white;border: none;padding-right: 4px;
+        margin-right: 25px;"><i class="fas fa-pen"></i></button><button id="delete" style="background-color: white;border: none;color: red;"><i class="fas fa-trash-alt fa-1x"></i></button></div>
 </div>
 <%- include('partials/chat'); -%>
 <script src="/javascript/chat.js"></script>
+<script>
+const  update = document.querySelector('#edit');
+const del = document.querySelector('#delete')
+console.log(update.baseURI.split('/')[4])
+
+update.addEventListener('click',_=>{
+    window.location.href = 'http://localhost:3000/editPost/'+update.baseURI.split('/')[4]
+    
+})
+
+
+
+
+
+
+
+
+
+del.addEventListener('click',_=>{
+    // console.log(document.querySelector('#edit').parentElement.previousElementSibling.children[0].attributes[0].value)
+
+    fetch('/delete',{
+    method:'delete',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+        id:update.baseURI.split('/')[4]
+        })
+    }).then(res=>{
+        if(res.ok) return res.json()
+        
+    }).then(response =>{
+        console.log(response)
+    })
+})
+</script>
 
 <%- include('partials/footer'); -%>

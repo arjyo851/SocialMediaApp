@@ -1,0 +1,48 @@
+<%- include('partials/header'); -%>
+    
+<div class="create container py-md-5 container--narrow">
+    <form >
+        <%    posts.forEach(function(post){ %>
+            <div class="mb-3">
+                <label for="titl" class="form-label">Title</label>
+            <input type="text" class="form-control" name="postTitle" id="titl" autocomplete="off" value="<%=post.title%>">
+            <label for="tarea" class="form-label">Para</label>
+             
+            <textarea name="postBody" id="myTextarea" cols="30" rows="10" class="form-control" ><%=post.content%></textarea>
+        </div>
+        <button type="submit" name="button" class="btn mt-2 btn-primary" id="edit">Save new post</button>
+            
+         <%    }) %>
+        
+    </form>
+</div>
+<%- include('partials/chat'); -%>
+
+<script src="/javascript/chat.js"></script>
+
+<script>
+const  update = document.querySelector('#edit');
+    update.addEventListener('click',_=>{
+    // console.log(document.querySelector('#edit').parentElement.previousElementSibling.children[0].attributes[0].value)
+
+    fetch('/update',{
+        method:'put',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+            title:document.getElementById('titl').value, //will put updated title here later which user wants changed
+            content:document.getElementById('myTextarea').value, //will put updated content here later which user wants changed
+            id:update.baseURI.split('/')[4]
+        })
+    }).then(res=>{
+        if(res.ok) return res.json()
+    }).then(response =>{
+        console.log(response)
+    })
+    
+})
+
+</script>
+
+    
+    
+<%- include('partials/footer'); -%>

@@ -68,7 +68,7 @@ router.get("/",function(req,res){
                 httpOnly:true
               }
               res.cookie(username_login,token,cookieOptions)
-                res.render("home-dashboard",{title:usern});
+                res.render("home-dashboard",{title:usern}); //sends title in header
             }
             else{
                 console.log("password is wrong"); //Later show a div telling password is wrong
@@ -192,7 +192,7 @@ try {
   })
   
   router.get("/profile/:username",requiredLogin,function(req,res){
-    console.log(req.user.username)
+    // console.log(req.user.username)
     if(req.params.username === req.user.username){  //check this line
       // Post.find({}, function(err, posts){
       // res.render("profile",
@@ -271,5 +271,53 @@ try {
     });
   })
 
+router.put("/update",(req,res)=>{
+console.log(req.body)
+Post.updateOne(
+  { _id: req.body.id },
+  {
+    $set: {
+      title: req.body.title,
+      content: req.body.content
+    }
+  },
+  {
+    upsert: true
+  },
+  function(err){
+    if(!err){
+        res.send("succrsfully updated article");
+        res.render('profile')
+    }
+    else{
+        res.send(err);
+    }
+})
+})
+
+router.delete("/delete",_=>{
+  Post.deleteOne(
+    {_id:req.body.id},
+    function(err){
+        if(!err){
+            res.send("Succesfully deleted corresponding article.");
+        }
+        else{
+            res.send(err);
+        }
+    }
+)
+});
+
+router.get("/editPost/:postId",requiredLogin,(req,res)=>{
+  console.log(req.user.username)
+  Post.find({_id:req.params.postId}, function(err, post){
+    console.log(post)
+    res.render("edit-post", {
+      title:req.user.username,
+      posts: post
+    });
+  });
+})
 
 module.exports = router

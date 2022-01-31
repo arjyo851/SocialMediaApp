@@ -8,7 +8,7 @@
         </div>
 
         <div class="d-flex profile-but" >
-            <button class="prof-but-elem" id="Posts"><a href="/profile/<%=title%>">Posts: 0</a> </button>
+            <button class="prof-but-elem" id="Posts"><a href="/profile/<%=title%>">Posts: <%=posts.length%></a> </button>
             <button class="prof-but-elem" style="color: #0060b6;"><a href="/profile/<%=title%>/followers"
                     style="color: #0060b6;">Followers: 0</a></button>
             <button class="prof-but-elem" style="color: #0060b6;" id="third_button"><a href="/profile/<%=title%>/following"
@@ -25,11 +25,11 @@
                                 <div class="card-title">
                                     <a href="/post/<%= post._id%>">
                                         <h6 data-filter-by="text">
-                                            <%= post.title %>
+                                          <b><%= post.title %> </b>  on <%=post.datePosted.getDate()%>/<%=post.datePosted.getMonth()+1%>/<%=post.datePosted.getFullYear()%>
                                         </h6>
                                     </a>
-    
                                 </div>
+                               
     
                             </div>
                         </div>
