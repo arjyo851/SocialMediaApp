@@ -242,7 +242,7 @@ try {
   router.post("/create-post",requiredLogin, function(req, res){
     console.log(req.user.username)
     if(req.user.username === undefined){
-      res.json({error:"please forgive me i cannot do thi"})
+      res.json({error:"success"})
     }
     const post = new Post({
       title: req.body.postTitle,
@@ -287,7 +287,7 @@ Post.updateOne(
   function(err){
     if(!err){
         res.send("succrsfully updated article");
-        res.render('profile')
+        // res.render('profile/dentalmaniac')
     }
     else{
         res.send(err);
@@ -295,7 +295,8 @@ Post.updateOne(
 })
 })
 
-router.delete("/delete",_=>{
+router.delete("/delete",(req,res)=>{
+  console.log(req.body)
   Post.deleteOne(
     {_id:req.body.id},
     function(err){
@@ -310,7 +311,7 @@ router.delete("/delete",_=>{
 });
 
 router.get("/editPost/:postId",requiredLogin,(req,res)=>{
-  console.log(req.user.username)
+  // console.log(req.user.username)
   Post.find({_id:req.params.postId}, function(err, post){
     console.log(post)
     res.render("edit-post", {

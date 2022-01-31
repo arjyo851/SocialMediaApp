@@ -34,15 +34,15 @@ update.addEventListener('click',_=>{
 
 del.addEventListener('click',_=>{
     // console.log(document.querySelector('#edit').parentElement.previousElementSibling.children[0].attributes[0].value)
-
+console.log(del.baseURI.split('/')[4])
     fetch('/delete',{
     method:'delete',
     headers:{'Content-Type':'application/json'},
     body:JSON.stringify({
-        id:update.baseURI.split('/')[4]
+        id:del.baseURI.split('/')[4]
         })
     }).then(res=>{
-        if(res.ok) return res.json()
+        if(res.ok)  window.location.href = 'http://localhost:3000/profile/dentalmaniac'
         
     }).then(response =>{
         console.log(response)

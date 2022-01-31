@@ -1,7 +1,7 @@
 <%- include('partials/header'); -%>
     
 <div class="create container py-md-5 container--narrow">
-    <form >
+    <!-- <form > -->
         <%    posts.forEach(function(post){ %>
             <div class="mb-3">
                 <label for="titl" class="form-label">Title</label>
@@ -14,7 +14,7 @@
             
          <%    }) %>
         
-    </form>
+    <!-- </form> -->
 </div>
 <%- include('partials/chat'); -%>
 
@@ -31,10 +31,11 @@ const  update = document.querySelector('#edit');
         body:JSON.stringify({
             title:document.getElementById('titl').value, //will put updated title here later which user wants changed
             content:document.getElementById('myTextarea').value, //will put updated content here later which user wants changed
-            id:update.baseURI.split('/')[4]
+            id:update.baseURI.split('/')[4].split('?')[0]
         })
     }).then(res=>{
-        if(res.ok) return res.json()
+        if(res.ok) window.location.href = 'http://localhost:3000/profile/dentalmaniac'
+        
     }).then(response =>{
         console.log(response)
     })
