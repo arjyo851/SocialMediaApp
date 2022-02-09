@@ -5,33 +5,39 @@ const mongoose = require('mongoose')
 const User = mongoose.model("User")
 module.exports = (req,res,next)=>{
     req.is('application/json')
-    
     const {cookie} = req.headers;
-    // console.log(typeof(req.cookies) )
-    // console.log(req.cookies.dentalmaniac)
-    // console.log(req.params.username)
-    // var username = req.params.username
-    // console.log()
+    
+    var username = req.user.username
+    console.log(username)
     if(!cookie){
         console.log("ends in first request")
        return res.status(401).json({error:"you must be logged in"})
     }
-    var cookieValue = cookie.split('=')[1]
-    // var cookieValue = 
+    // var cookieValue 
+
+
+    for (const [key, value] of Object.entries(req.cookies)) {
+
+        if(username == key){
+            cookieValue = value
+            // console.log(`${key}: ${value}`);
+        }
+      }
+    // console.log(cookieValue)
+      if(cookieValue === undefined){
+          console.log("ends in second request")
+         return res.status(401).json({error:"you must be logged in"})
+      }
     const authorization = "Bearer " + cookieValue
     req.headers.auth = authorization
     // console.log(req.headers)
     //authorization === Bearer ewefwegwrherhe
-    if(!authorization){
-        console.log("ends in first request")
-       return res.status(401).json({error:"you must be logged in"})
-    }
     const token = authorization.replace("Bearer ","")
     
     jwt.verify(token,JWT_SECRET,(err,payload)=>{
         
         if(err){
-            console.log("ends in second request")
+            console.log("ends in third request")
          return   res.status(401).json({error:"you must be logged in"})
         }
 

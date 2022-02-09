@@ -59,7 +59,7 @@ router.get("/",function(req,res){
               const token = jwt.sign({_id:foundUser._id},JWT_SECRET);
               // console.log(foundUser)
               req.user = foundUser            // CHECK THIS LINE
-              
+              // console.log(req.user)
               // res.json({token})
               const cookieOptions = {
                 expires:new Date(
@@ -154,14 +154,15 @@ try {
             console.log(err);
           } else {
             // usern = username;
-            res.render("home-dashboard",{title:req.user.username});
+            // console.log(newUser)
+            res.render("home-dashboard",{title:newUser.username});
             console.log("Succesfully registered")
           }
         });
-      
-        const token = jwt.sign({_id:foundUser._id},JWT_SECRET);
+      // console.log(newUser.username)
+        const token = jwt.sign({_id:newUser._id},JWT_SECRET);
         // console.log(foundUser)
-        req.user = foundUser                    //CHECK THIS LINE
+                      
         
         // res.json({token})
         const cookieOptions = {
@@ -170,8 +171,8 @@ try {
           ),
           httpOnly:true
         }
-        res.cookie(username_login,token,cookieOptions)
-          res.render("home-dashboard",{title:usern});
+        res.cookie(newUser.username,token,cookieOptions)
+          res.render("home-dashboard",{title:newUser.username});
         
       })
   }
@@ -192,23 +193,15 @@ try {
   })
   
   router.get("/profile/:username",requiredLogin,function(req,res){
-    // console.log(req.user.username)
+    console.log(req.user.username)
     if(req.params.username === req.user.username){  //check this line
-      // Post.find({}, function(err, posts){
-      // res.render("profile",
-      // {title:req.user.username,
-      //   posts:posts
-      // });
-      // }
-      // )}
+      
       Post.find({Postedby:req.user._id}).populate("Postedby","_id username").then(posts=> res.render("profile",
       {title:req.user.username,
         posts:posts
       })).catch(err=>console.log(err))
     }
-    else{
-      res.redirect("/404")
-    }
+    
     
   })
   
@@ -311,7 +304,7 @@ router.delete("/delete",(req,res)=>{
 });
 
 router.get("/editPost/:postId",requiredLogin,(req,res)=>{
-  // console.log(req.user.username)
+  console.log(req.user.username)
   Post.find({_id:req.params.postId}, function(err, post){
     console.log(post)
     res.render("edit-post", {

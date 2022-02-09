@@ -1,0 +1,5 @@
+1) all posts of all users should show up in the user profile
+2) follower and following of all users 
+3)on clicking signout the cookie should delete
+4)chat socket.io build
+5) on clicking search search should come and i should be able to search all the items

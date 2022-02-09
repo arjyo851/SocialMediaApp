@@ -1,17 +1,25 @@
 <%- include('partials/header'); -%>
-<div style="padding: 5px 5px;background-color: green;color: white;margin: 5px 5px;">New post succsfully created</div>
-<div>
+<div  class="alert alert-success" role="alert" style="  margin: 30px 100px;width: 730px;
+position: relative;
+left: 168px;">New post succsfully created</div>
+<div class="container py-md-5 container--narrow" style="width: 730px;">
 
     <%    posts.forEach(function(post){ %>
+        <div style="display: flex; ">
+            <div style="width: 80%;"> <h1><%= post.title %></h1>
+                <p>Posted by <a href="/profile/<%=title%>"><%=title%></a>  on <%=post.datePosted.getDate()%>/<%=post.datePosted.getMonth()+1%>/<%=post.datePosted.getFullYear()%></p>
+                <p><%= post.content%>
+                </p></div>
+            
+            <div style="padding: 20px; background-color: white;display: flex;"><button id="edit" style="background-color: white;border: none;padding-right: 4px;
+                margin-right: 25px;"><i class="fas fa-pen"></i></button><button id="delete" style="background-color: white;border: none;color: red;"><i class="fas fa-trash-alt fa-1x"></i></button></div>
+        </div>
         
-        <h1><%= post.title %></h1>
-        <p>Posted by <%=title%> on date</p>
-        <p><%= post.content%>
-        </p>
+        </div>
+        
+        
      <%    }) %>
-     <div style="padding: 20px; background-color: white;display: flex;"><button id="edit" style="background-color: white;border: none;padding-right: 4px;
-        margin-right: 25px;"><i class="fas fa-pen"></i></button><button id="delete" style="background-color: white;border: none;color: red;"><i class="fas fa-trash-alt fa-1x"></i></button></div>
-</div>
+     
 <%- include('partials/chat'); -%>
 <script src="/javascript/chat.js"></script>
 <script>
