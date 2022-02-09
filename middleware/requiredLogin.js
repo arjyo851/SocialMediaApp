@@ -7,13 +7,13 @@ module.exports = (req,res,next)=>{
     req.is('application/json')
     const {cookie} = req.headers;
     
-    var username = req.user.username
+    var username = req.params.username
     console.log(username)
     if(!cookie){
         console.log("ends in first request")
        return res.status(401).json({error:"you must be logged in"})
     }
-    // var cookieValue 
+    var cookieValue 
 
 
     for (const [key, value] of Object.entries(req.cookies)) {
