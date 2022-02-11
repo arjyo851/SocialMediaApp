@@ -5,11 +5,8 @@ const bcrypt = require('bcrypt')
 const saltrounds = 10;
 const { body, validationResult } = require('express-validator');
 const validator = require('validator');
-const cookie_parser = require('cookie-parser');
 const cookieParser = require('cookie-parser');
-const { Socket } = require('socket.io');
 const server = require('http').createServer();
-const io = require('socket.io')(server)
 const users = {};
 const cors = require('cors')
 const ejs = require('ejs');
@@ -37,38 +34,14 @@ app.use(cors({
   origin:false
 }))
 app.use(session({
-  cookie: {
-    path    : '/',
-    httpOnly: false,
-    maxAge  : 24*60*60*1000
-  },
   secret:"heater",
   resave: true,
 saveUninitialized: false
 }))
 
-// Socket
+const loginRoute = require('./routes/loginRoutes');
 
-io.on('connection',socket=>{
-  socket.on('new-user-joined',name=>{
-    users[socket.id] = name;
-    socket.broadcast.emit('user-joined',name);
-  })
-
-  socket.on('send',messege=>{
-    socket.broadcast.emit('receive',{messege:messege,name:users[socket.id]})
-  })
-})
-
-
-
- 
-
-
-// server.listen(process.env.PORT || 3000, function(){
-//   console.log('app running');
-// });
-
+app.use(require('./routes/loginRoutes'));
 
 
 

@@ -1,7 +1,7 @@
 // const jwt = require('jsonwebtoken')
 // const JWT_SECRET = process.env.JWT_SECRET.toString();
-// const mongoose = require('mongoose')
-// const User = mongoose.model("User")
+const mongoose = require('mongoose')
+const User = mongoose.model("User")
 // module.exports = (req,res,next)=>{
 //     req.is('application/json')
 //     const {cookie} = req.headers;
@@ -58,9 +58,11 @@
 
 module.exports = (req, res, next) => {
     if (req.session && req.session.user) {
+        console.log("Reached here")
         return next();
     }
     else {
         return res.redirect('/');
+        // return res.redirect('profile')
     }
 }
