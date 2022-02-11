@@ -11,7 +11,7 @@ const postSchema = new mongoose.Schema({
     },
     datePosted:{
       type:Date,
-      default:new Date()
+      default:new Date() //could have used timestamp :true
     }
   })
 

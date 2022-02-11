@@ -12,37 +12,20 @@ const jwt = require('jsonwebtoken');
 const requiredLogin = require("./middleware/requiredLogin");
 const req = require("express/lib/request");
 JWT_SECRET=process.env.JWT_SECRET.toString()
+const session = require('express-session');
+
 
 
 var usern;
-//will use later
-// const requiredLogin = (req,res,next)=>{
-//   const beraerHeader = req.headers['authorization'] 
-
-//   console.log(beraerHeader)
-//   //authorization === Bearer ewefwegwrherhe
-
-//   if(typeof beraerHeader !== 'undefined'){
-//     const bearer = beraerHeader.split(' ')
-//   const bearerToken = bearer[1]
-//   req.token = bearerToken
-// next()
-//   }
-//   else{
-//     console.log("Ends in first check")
-//     return res.status(401).json({error:"you must be logged in"})
-//   } 
-  
-// }
 
 router.get("/",function(req,res){
     res.render("home-guest")
     
   })
   
+  // login
   router.post("/login",function(req,res){
   
-    // login
   
     
   
@@ -56,18 +39,19 @@ router.get("/",function(req,res){
       if (foundUser) {
         bcrypt.compare(password_login, foundUser.password, function(err, result) {
             if(result === true){
-              const token = jwt.sign({_id:foundUser._id},JWT_SECRET);
+              // const token = jwt.sign({_id:foundUser._id},JWT_SECRET);
               // console.log(foundUser)
-              req.user = foundUser            // CHECK THIS LINE
+              // req.user = foundUser            // CHECK THIS LINE
               // console.log(req.user)
               // res.json({token})
+              // req.session.user = {}
               const cookieOptions = {
                 expires:new Date(
                   Date.now() + 90*24*60*60*1000
                 ),
                 httpOnly:true
               }
-              res.cookie(username_login,token,cookieOptions)
+              // res.cookie(username_login,token,cookieOptions)
                 res.render("home-dashboard",{title:usern}); //sends title in header
             }
             else{
@@ -155,6 +139,7 @@ try {
           } else {
             // usern = username;
             // console.log(newUser)
+            req.session.user = newUser
             res.render("home-dashboard",{title:newUser.username});
             console.log("Succesfully registered")
           }

@@ -13,6 +13,7 @@ const io = require('socket.io')(server)
 const users = {};
 const cors = require('cors')
 const ejs = require('ejs');
+const session = require('express-session');
 
 
 const app = express();
@@ -34,6 +35,16 @@ app.use(require('./router'))
 app.use(require('./controllers/postControllers'))
 app.use(cors({
   origin:false
+}))
+app.use(session({
+  cookie: {
+    path    : '/',
+    httpOnly: false,
+    maxAge  : 24*60*60*1000
+  },
+  secret:"heater",
+  resave: true,
+saveUninitialized: false
 }))
 
 // Socket
