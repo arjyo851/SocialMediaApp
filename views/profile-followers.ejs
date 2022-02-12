@@ -5,7 +5,7 @@
         <p id="pro-name"><%=(typeof title != "undefined" ? title : "")%></p>
     </div>
     <div class="d-flex profile-but">
-        <button class="prof-but-elem" style="color: #0060b6;"><a href="/profile/<%=title%>" style="color: #0060b6;">Posts: 0</a>  </button>
+        <button class="prof-but-elem" style="color: #0060b6;"><a href="/profile/<%=title%>" style="color: #0060b6;">Posts: <%=postlength%></a>  </button>
         <button class="prof-but-elem" id="follower"><a href="/profile/<%=title%>/followers">Followers: 0</a></button>
         <button class="prof-but-elem" style="color: #0060b6;"><a href="/profile/<%=title%>/following" style="color: #0060b6;">Following: 0</a></button>
     </div>

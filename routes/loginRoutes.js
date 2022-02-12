@@ -22,15 +22,17 @@ router.post("/login",function(req,res){
             if(result === true){
               
                req.session.user = foundUser
-                res.render("home-dashboard",{title:username_login}); //sends title in header
+                return res.render("home-dashboard",{title:username_login}); //sends title in header
             }
             else{
                 console.log("password is wrong"); //Later show a div telling password is wrong
+                res.render("home-guest"); //send payload here telling that password is wrong
             }  
         });
     } 
       else{
           console.log("username not found") // Later show a div telling that username is wrong
+          res.render("home-guest") //send payload here telling that username is not found
       }
     }
   });

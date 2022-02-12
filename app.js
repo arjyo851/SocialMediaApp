@@ -11,6 +11,8 @@ const users = {};
 const cors = require('cors')
 const ejs = require('ejs');
 const session = require('express-session');
+const requiredLogin = require("./middleware/requiredLogin");
+
 
 
 const app = express();
@@ -40,8 +42,13 @@ saveUninitialized: false
 }))
 
 const loginRoute = require('./routes/loginRoutes');
+const req = require('express/lib/request');
 
 app.use(require('./routes/loginRoutes'));
+app.use(require('./routes/register'))
+app.use("/logout",require('./routes/logout'))
+app.use("/profile",requiredLogin,require('./routes/profile'))
+app.use("/createPost",requiredLogin,require('./routes/post'))
 
 
 
