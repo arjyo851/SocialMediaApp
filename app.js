@@ -48,7 +48,8 @@ app.use(require('./routes/loginRoutes'));
 app.use(require('./routes/register'))
 app.use("/logout",require('./routes/logout'))
 app.use("/profile",requiredLogin,require('./routes/profile'))
-app.use("/createPost",requiredLogin,require('./routes/post'))
+app.use("/createPost",requiredLogin,require('./routes/createPost'))
+app.use("/post",require('./routes/post'))
 
 
 

@@ -38,7 +38,7 @@ router.get("/",function(req,res){
   
   
   router.get("/404",function(req,res){
-    console.log(req.user.username)
+    console.log(req.session.user.username)
     res.render("404");
   });
   
@@ -47,37 +47,8 @@ router.get("/",function(req,res){
   
   
 
-  // router.post("/create-post",requiredLogin, function(req, res){
-  //   console.log(req.session.user.username)
-  //   if(req.user.user.username === undefined){
-  //     res.redirect("/")
-  //   }
-  //   const post = new Post({
-  //     title: req.body.postTitle,
-  //     content: req.body.postBody,
-  //     Postedby:req.session.user.username
-  //   });
   
-  // // req.user.password = undefined
-  //   post.save(function(er r){
-  //     if (!err){
-  //       res.redirect("/post/"+post._id);
-  //     }
-  //     else{
-  //       res.redirect("/404");
-  //     }
-  //   });
-  // });
-
-  router.get("/post/:uniqueId",requiredLogin,(req,res)=>{
-    console.log(req.user.username)
-    Post.find({_id:req.params.uniqueId}, function(err, post){
-      res.render("single-post-screen", {
-        title:req.user.username,
-        posts: post
-      });
-    });
-  })
+  
 
 router.put("/update",(req,res)=>{
 console.log(req.body)

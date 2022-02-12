@@ -5,6 +5,8 @@ const bodyParser = require("body-parser")
 const bcrypt = require("bcrypt");
 const mongoose = require("mongoose")
 const User = mongoose.model("User");
+const validator = require('validator')
+const saltrounds = 10
 
 router.post("/register",(req,res)=>{
     const { username, email, password } = req.body;
@@ -76,27 +78,14 @@ router.post("/register",(req,res)=>{
             if (err) {
               console.log(err);
             } else {
-              // usern = username;
-              // console.log(newUser)
+              
               req.session.user = newUser
-              res.render("home-dashboard",{title:newUser.username});
               console.log("Succesfully registered")
+              return res.render("home-dashboard",{title:newUser.username});
             }
           });
-        // console.log(newUser.username)
-          const token = jwt.sign({_id:newUser._id},JWT_SECRET);
-          // console.log(foundUser)
-                        
+        
           
-          // res.json({token})
-          const cookieOptions = {
-            expires:new Date(
-              Date.now() + 90*24*60*60*1000
-            ),
-            httpOnly:true
-          }
-          res.cookie(newUser.username,token,cookieOptions)
-            res.render("home-dashboard",{title:newUser.username});
           
         })
     }
