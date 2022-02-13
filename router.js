@@ -50,28 +50,7 @@ router.get("/",function(req,res){
   
   
 
-router.put("/update",(req,res)=>{
-console.log(req.body)
-Post.updateOne(
-  { _id: req.body.id },
-  {
-    $set: {
-      title: req.body.title,
-      content: req.body.content
-    }
-  },
-  {
-    upsert: true
-  },
-  function(err){
-    if(!err){
-        res.send("succrsfully updated article");
-    }
-    else{
-        res.send(err);
-    }
-})
-})
+
 
 
 

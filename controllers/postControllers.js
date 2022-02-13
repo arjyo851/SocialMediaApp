@@ -23,15 +23,29 @@ router.delete("/delete",(req,res)=>{
   )
   });
 
-  router.get("/editPost/:postId",requiredLogin,(req,res)=>{
-    console.log(req.user.username)
-    Post.find({_id:req.params.postId}, function(err, post){
-      console.log(post)
-      res.render("edit-post", {
-        title:req.user.username,
-        posts: post
-      });
-    });
-  })
+  router.put("/update",(req,res)=>{
+    console.log(req.body)
+    Post.updateOne(
+      { _id: req.body.id },
+      {
+        $set: {
+          title: req.body.title,
+          content: req.body.content
+        }
+      },
+      {
+        upsert: true
+      },
+      function(err){
+        if(!err){
+            res.send("succrsfully updated article");
+        }
+        else{
+            res.send(err);
+        }
+    })
+    })
+
+  
 
 module.exports = router
