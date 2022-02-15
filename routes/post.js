@@ -8,7 +8,6 @@ const User = mongoose.model("User");
 const Post = mongoose.model("Post");
 
 router.get("/:uniqueId",(req,res)=>{
-    console.log(req.session.user.username)
     Post.find({_id:req.params.uniqueId}, function(err, post){
       res.render("single-post-screen", {
         title:req.session.user.username,

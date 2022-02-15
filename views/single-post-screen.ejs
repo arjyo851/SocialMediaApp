@@ -7,7 +7,8 @@ left: 168px;">New post succsfully created</div>
     <%    posts.forEach(function(post){ %>
         <div style="display: flex; ">
             <div style="width: 80%;"> <h1><%= post.title %></h1>
-                <p>Posted by <a href="/profile/<%=title%>"><%=title%></a>  on <%=post.datePosted.getDate()%>/<%=post.datePosted.getMonth()+1%>/<%=post.datePosted.getFullYear()%></p>
+                <p>Posted by <a href="/profile/<%=title%>" style="text-decoration: underline;
+                    color: blue;"><%=title%></a>  on <%=post.datePosted.getDate()%>/<%=post.datePosted.getMonth()+1%>/<%=post.datePosted.getFullYear()%></p>
                 <p><%= post.content%>
                 </p></div>
             

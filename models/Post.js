@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const {ObjectId} = mongoose.Schema.Types
 
 const postSchema = new mongoose.Schema({
-    title:{type:String,required:true},
-    content:{type:String,required:true},
+    title:{type:String,required:true,trim:true},
+    content:{type:String,required:true,trim:true},
     Postedby:{
       type:ObjectId,
       ref:"User"
