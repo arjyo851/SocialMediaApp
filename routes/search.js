@@ -21,7 +21,7 @@ router.get("/posts",function(req,res){
 })
 
 router.get("/users",function(req,res){
-    res.render("search",{
+    res.render("search_user",{
         title:req.session.user.username
     })
 })

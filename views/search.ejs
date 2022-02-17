@@ -2,10 +2,12 @@
 
 <div class="container  container--narrow" style="border: 1px solid black; margin-top: 5px; width: 64%;"> 
     <div class="titleContainer"><h1 id="search">Search</h1></div>
-    <div class="searchBarContainer"><i class="fa-solid fa-magnifying-glass" style="margin-right: 5px;"></i><input type="text" id="searchBox"></div>
-    <div class="tabsContainer"><a class="tab active" href="/search/posts"><span>Posts</span></a><a class="tab" href="/search/users"><span>Users</span></a></div>
+    <div class="searchBarContainer"><i class="fa-solid fa-magnifying-glass" style="margin-right: 5px;"></i><input type="text" id="searchBox" data-search=selectedTab></div>
+    <div class="tabsContainer"><a class="tab active"   href="/search/posts"><span>Posts</span></a><a class="tab"  href="/search/users"><span>Users</span></a></div>
      <div class="resultsContainer"></div>
 </div>
+
+<script src="javascript/search.js"></script>
 
 <%- include('partials/chat'); -%>
 <%- include('partials/footer'); -%>
