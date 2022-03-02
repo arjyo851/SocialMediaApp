@@ -284,10 +284,9 @@ text-align: left;
     width: 350px;
     height: 65vh;
     background-color: white;
-    z-index: 2000;
-    transition: all 100s ease-out;
     transform: scaleY(0);
     transform-origin: bottom;
+    z-index: 9999; 
   }
 
   .chat-content{
@@ -299,7 +298,7 @@ text-align: left;
 
   .chat-box.active{
     transform: scaleY(1);
-    z-index: 2000;
+    z-index: 9999;
 
   }
 
