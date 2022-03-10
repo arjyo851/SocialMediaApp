@@ -9,6 +9,9 @@
   },
   "author": "Arjyo Chakraborty",
   "license": "ISC",
+  "engines": {
+    "node": "16.13.0"
+  },
   "dependencies": {
     "bcrypt": "^5.0.1",
     "cookie-parser": "^1.4.6",
